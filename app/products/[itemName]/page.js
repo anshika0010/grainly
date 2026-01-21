@@ -1,0 +1,15 @@
+import { fetchProducts } from "../../lib/fetchProducts";
+import ProductDetailClient from "./ProductDetailClient";
+
+export default async function ProductDetailPage({ params }) {
+  const { itemName } = await params; // ✅ FIX
+
+  let products = [];
+  try {
+    products = await fetchProducts();
+  } catch (error) {
+    console.error(error);
+  }
+
+  return <ProductDetailClient products={products} itemName={itemName} />;
+}
