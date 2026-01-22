@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, X } from "lucide-react";
-
+import { anton } from "../../lib/fonts";
 export default function FAQSection() {
   const [open, setOpen] = useState(1);
 
@@ -41,7 +41,7 @@ export default function FAQSection() {
   ];
 
   return (
-    <div className="w-full mt-20 px-6 anton-regular md:px-16 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className={`${anton.className} w-full mt-20 px-6 md:px-16 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12`}>
       {/* LEFT SIDE */}
       <motion.div
         initial={{ opacity: 0, x: -40 }}

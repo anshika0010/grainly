@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FiArrowUpRight, FiCheckCircle } from "react-icons/fi";
-
+import { anton } from "../lib/fonts";
 const ContactSection = () => {
   const [showPopup, setShowPopup] = useState(false);
 
@@ -38,9 +38,8 @@ const ContactSection = () => {
       )}
 
       {/* CONTACT SECTION */}
-      <section className="w-full anton-regular bg-white py-16 px-6">
+      <section className={`${anton.className} w-full bg-white py-16 px-6`}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-          
           {/* LEFT SIDE */}
           <div>
             <h1 className="text-6xl text-orange-500 mb-10 tracking-tight">
@@ -65,9 +64,7 @@ const ContactSection = () => {
                 <div>
                   <p className="font-semibold text-gray-900">Phone</p>
                   <p className="text-gray-500">+1 786-789-2121</p>
-                  <p className="text-gray-400 text-sm">
-                    Mon–Fri: 9AM–6PM EST
-                  </p>
+                  <p className="text-gray-400 text-sm">Mon–Fri: 9AM–6PM EST</p>
                 </div>
                 <div className="h-10 w-10 bg-blue-500 text-white flex items-center justify-center rounded-full">
                   <FiArrowUpRight size={20} />

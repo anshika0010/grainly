@@ -4,17 +4,21 @@
 import Link from "next/link";
 import SocialIcons from "./SocialIcons";
 import Image from "next/image";
-
+import { anton } from "../lib/fonts";
 export default function Footer() {
   return (
     <footer className="w-full mt-20">
       {/* SUBSCRIBE SECTION */}
       <div className="bg-white py-20 text-center">
-        <h2 className="text-5xl md:text-7xl font-extrabold anton-regular tracking-wide">
+        <h2
+          className={`${anton.className} text-5xl md:text-7xl font-extrabold tracking-wide`}
+        >
           SUBSCRIBE TO <span className="color-text">GRAINLY</span>
         </h2>
 
-        <p className="text-gray-500 mt-4 text-xl anton-regular max-w-2xl mx-auto">
+        <p
+          className={`${anton.className} text-gray-500 mt-4 text-xl  max-w-2xl mx-auto`}
+        >
           Your inside scoop on what's new, what's next, and what's back in
           stock.
         </p>
@@ -33,7 +37,9 @@ export default function Footer() {
       </div>
 
       {/* BLACK FOOTER SECTION */}
-      <div className="bg-black text-white anton-regular py-12 px-6 md:px-16">
+      <div
+        className={`${anton.className} bg-black text-white  py-12 px-6 md:px-16`}
+      >
         <div className="max-w-7xl mx-auto">
           {/* TOP ROW */}
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 border-b border-gray-700 pb-10">
@@ -84,7 +90,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="hover:text-white transition">
+                  <Link href="/contact-us" className="hover:text-white transition">
                     Contact
                   </Link>
                 </li>

@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-
+import { anton } from "../lib/fonts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -28,7 +27,7 @@ export default function BlogSection() {
       .then((data) => {
         const filtered = data
           .filter(
-            (b) => b.brand === "grainly" && new Date(b.date) <= new Date()
+            (b) => b.brand === "grainly" && new Date(b.date) <= new Date(),
           )
           .slice(0, 5);
 
@@ -56,7 +55,7 @@ export default function BlogSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl font-bold anaton-regular"
+          className={`${anton.className} text-5xl md:text-6xl font-bold `}
         >
           GRAINLY
         </motion.h2>
@@ -66,7 +65,7 @@ export default function BlogSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[120px] md:text-[160px]  anaton-regular color-text leading-none"
+          className={`${anton.className} text-[120px] md:text-[160px] color-text leading-none`}
         >
           BLOG
         </motion.p>
@@ -117,13 +116,11 @@ export default function BlogSection() {
 
                   {/* CONTENT */}
                   <div className="flex flex-col justify-center text-left">
-                    <h4 className="text-2xl anton-regular">
+                    <h4 className={`${anton.className} text-2xl `}>
                       {blog.title}
                     </h4>
 
-                    <p className="text-gray-800 text-sm mt-2">
-                      {blog.date}
-                    </p>
+                    <p className="text-gray-800 text-sm mt-2">{blog.date}</p>
 
                     <p className="text-gray-600 text-md mt-4 line-clamp-3">
                       {blog.short_description || blog.description}

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
+import { anton } from "../lib/fonts";
 export default function ProductsClient({ products = [], searchText }) {
   const [activeTab, setActiveTab] = useState("All");
 
@@ -31,14 +31,14 @@ export default function ProductsClient({ products = [], searchText }) {
       <div className="max-w-7xl mx-auto px-6">
         {/* HEADER */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-6">
-          <h2 className="text-3xl anton-regular">CATEGORIES</h2>
+          <h2 className={`${anton.className} text-3xl `}>CATEGORIES</h2>
 
           <div className="flex gap-6 border-b">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`pb-2 text-2xl anton-regular ${
+                className={`${anton.className} pb-2 text-2xl  ${
                   activeTab === tab.id
                     ? "border-b-4 border-black"
                     : "text-gray-400"
@@ -57,7 +57,7 @@ export default function ProductsClient({ products = [], searchText }) {
               key={item._id}
               className="bg-[#f7f7f7] rounded-lg hover:shadow-lg transition"
             >
-              <h5 className="text-3xl p-4 anton-regular">{item.flavour}</h5>
+              <h5 className= {`${anton.className} text-3xl p-4 `}>{item.flavour}</h5>
 
               <div className="flex justify-center">
                 <Image

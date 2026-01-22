@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-
+import { anton } from "../lib/fonts";
 export default function HeroSection({ scrollToProducts }) {
   const handleShopNow = () => {
     scrollToProducts?.current?.scrollIntoView({
@@ -12,7 +12,9 @@ export default function HeroSection({ scrollToProducts }) {
   return (
     <>
       {/* HEADING */}
-      <h1 className="flex justify-center anton-regular color-text text-[70px] sm:text-[60px] md:text-[150px]">
+      <h1
+        className={`${anton.className} flex justify-center  color-text text-[70px] sm:text-[60px] md:text-[150px]`}
+      >
         GRAINLY-CREAM OF RICE
       </h1>
 

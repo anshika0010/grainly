@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 // import Loader from "../Loader";
 import { fetchProducts } from "../../lib/fetchProducts";
-
+import { anton } from "../../lib/fonts";
 export default async function BestSellers() {
   let products = [];
   try {
@@ -21,7 +21,7 @@ export default async function BestSellers() {
     <section className="w-full bg-white py-12">
       <div className="max-w-7xl mx-auto px-6">
         {/* TITLE */}
-        <div className="flex items-center gap-3 mb-10 anton-regular">
+        <div className={`${anton.className} flex items-center gap-3 mb-10 `}>
           <div className="flex">
             <div className="w-4 h-4 border-t-4 border-r-4 border-gray-300 rotate-45" />
             <div className="w-4 h-4 border-t-4 border-r-4 border-gray-400 rotate-45" />
@@ -37,7 +37,7 @@ export default async function BestSellers() {
               key={item?._id}
               className="bg-[#f7f7f7] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 hover:bg-white"
             >
-              <p className="text-3xl p-4 anton-regular">{item?.flavour}</p>
+              <p className={`${anton.className} text-3xl p-4 `}>{item?.flavour}</p>
 
               <div className="p-4 flex justify-center items-center h-[320px]">
                 <Image

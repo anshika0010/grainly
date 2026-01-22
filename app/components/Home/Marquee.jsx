@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import { anton } from "../../lib/fonts";
 export default function LetterMarquee() {
   const words = [
     "GRAINLY",
@@ -12,7 +12,7 @@ export default function LetterMarquee() {
   ];
 
   return (
-    <div className="overflow-hidden whitespace-nowrap py-5 anton-regular bg-white mt-10">
+    <div className={`${anton.className} overflow-hidden whitespace-nowrap py-5  bg-white mt-10`}>
       <motion.div
         className="flex gap-16"
         animate={{ x: ["0%", "-100%"] }}

@@ -2,17 +2,8 @@ import "./globals.css";
 import { Anton, Geist_Mono } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-const anton = Anton({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-anton",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
+import { anton, geistMono } from "./lib/fonts";
+import ScrollToTop from "./components/ScrollToTop";
 
 export const metadata = {
   title: "Create Next App",
@@ -22,10 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${anton.className} ${geistMono.variable} mt-20 antialiased`}
-      >
+      <body className={`${geistMono.variable} mt-20 antialiased`}>
         <Navbar />
+        <ScrollToTop />
         {children}
         <Footer />
       </body>

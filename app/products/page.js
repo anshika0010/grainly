@@ -3,11 +3,60 @@ import LetterMarquee from "../components/Home/Marquee";
 import HeroSection from "./HeroSection";
 import ProductsSection from "./ProductsSection";
 
+export const metadata = {
+  title: "Explore Cream of Rice Flavors | Grainly Foods",
+  description:
+    "Shop premium flavored Cream of Rice from Grainly Foods, perfect for pre-workout, post-workout, or daily meals.",
+
+  alternates: {
+    canonical: "https://www.grainly-foods.com/products",
+  },
+
+  openGraph: {
+    title: "Explore Cream of Rice Flavors | Grainly Foods",
+    description:
+      "Shop premium flavored Cream of Rice from Grainly Foods, perfect for pre-workout, post-workout, or daily meals.",
+    url: "https://www.grainly-foods.com/products",
+    siteName: "Grainly-Foods",
+    images: [
+      {
+        url: "https://www.grainly-foods.com/logo.webp",
+        width: 1200,
+        height: 630,
+        alt: "Grainly Foods Logo",
+      },
+    ],
+    locale: "en_AE",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Explore Cream of Rice Flavors | Grainly Foods",
+    description:
+      "Shop premium flavored Cream of Rice from Grainly Foods, perfect for pre-workout, post-workout, or daily meals.",
+    images: ["https://www.grainly-foods.com/logo.webp"],
+    site: "@GrainlyFoods", // optional
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  authors: [{ name: "Grainly Foods", url: "https://www.grainly-foods.com" }],
+
+  other: {
+    "geo.region": "AE-DU",
+    "geo.placename": "Dubai",
+    language: "English",
+  },
+};
 const page = () => {
   return (
     <div>
       <HeroSection />
-      <ProductsSection/>
+      <ProductsSection />
       <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h6 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">

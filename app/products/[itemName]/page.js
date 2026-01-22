@@ -1,4 +1,5 @@
 import { fetchProducts } from "../../lib/fetchProducts";
+import ProductsSection from "../ProductsSection";
 import ProductDetailClient from "./ProductDetailClient";
 
 export default async function ProductDetailPage({ params }) {
@@ -11,5 +12,11 @@ export default async function ProductDetailPage({ params }) {
     console.error(error);
   }
 
-  return <ProductDetailClient products={products} itemName={itemName} />;
+  return (
+    <>
+      {" "}
+      <ProductDetailClient products={products} itemName={itemName} />
+      <ProductsSection />
+    </>
+  );
 }

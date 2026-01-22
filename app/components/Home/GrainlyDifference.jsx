@@ -1,4 +1,5 @@
 'use client';
+import {anton} from "../../lib/fonts";
 export default function GrainlyDifference() {
   return (
     <section className="w-full bg-white py-12 md:py-20 relative overflow-hidden">
@@ -10,10 +11,10 @@ export default function GrainlyDifference() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Heading */}
         <div className="text-center mb-12 md:mb-20">
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-gray-300 anton-regular">
+          <h2 className={`${anton.className} text-3xl sm:text-5xl md:text-7xl font-extrabold text-gray-300 `}>
             THE GRAINLY DIFFERENCE:
           </h2>
-          <p className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#dd7c3c] anton-regular mt-3">
+          <p className={`${anton.className} text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#dd7c3c] mt-3`}>
             NOT YOUR AVERAGE CREAM OF RICE
           </p>
         </div>
@@ -37,7 +38,7 @@ export default function GrainlyDifference() {
                 className="bg-white border border-gray-200 rounded-xl p-5 w-full sm:w-80
                 shadow-lg shadow-orange-300/40 ring-1 ring-orange-300/30"
               >
-                <h5 className="font-bold text-xl sm:text-2xl text-gray-800 anton-regular">
+                <h5 className={`${anton.className} font-bold text-xl sm:text-2xl text-gray-800 `}>
                   {item.title}
                 </h5>
                 <p className="text-sm text-gray-600 mt-2">{item.text}</p>
@@ -71,7 +72,7 @@ export default function GrainlyDifference() {
                 className="bg-white border border-gray-200 rounded-xl p-5 w-full sm:w-80
                 shadow-lg shadow-orange-300/40 ring-1 ring-orange-300/30"
               >
-                <h4 className="font-bold text-xl sm:text-2xl text-gray-800 anton-regular">
+                <h4 className={`${anton.className} font-bold text-xl sm:text-2xl text-gray-800 `}>
                   {item.title}
                 </h4>
                 <p className="text-sm text-gray-600 mt-2">{item.text}</p>

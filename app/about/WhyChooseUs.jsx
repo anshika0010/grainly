@@ -1,4 +1,6 @@
-'use client';
+"use client";
+import { anton } from "../lib/fonts";
+
 export default function WhyChooseUs() {
   return (
     <div className="w-full py-16">
@@ -12,7 +14,9 @@ export default function WhyChooseUs() {
       >
         {/* LEFT SECTION - Vertical Text */}
         <div className="flex items-center justify-center md:col-span-1 h-full py-10">
-          <h2 className="text-6xl md:text-7xl font-extrabold anton-regular text-white tracking-wider rotate-180 writing-vertical">
+          <h2
+            className={`${anton.className} text-6xl md:text-7xl font-extrabold  text-white tracking-wider rotate-180 writing-vertical`}
+          >
             WHY CHOOSE US
           </h2>
         </div>
@@ -29,7 +33,7 @@ export default function WhyChooseUs() {
         >
           {/* Box 1 */}
           <div className="p-8 border border-white/30 text-white">
-            <h4 className="text-xl anton-regular">
+            <h4 className={`${anton.className} text-xl `}>
               Clean & High-Quality Ingredients
             </h4>
             <p className="mt-6 text-md leading-relaxed opacity-90">
@@ -40,7 +44,7 @@ export default function WhyChooseUs() {
 
           {/* Box 2 */}
           <div className="p-8 border border-white/30 text-white">
-            <h4 className="text-xl anton-regular">
+            <h4 className={`${anton.className} text-xl `}>
               Fast-Digesting, Easy on the Stomach
             </h4>
             <p className="mt-6 text-md leading-relaxed opacity-90">
@@ -52,7 +56,9 @@ export default function WhyChooseUs() {
 
           {/* Box 3 */}
           <div className="p-8 border border-white/30 text-white">
-            <h4 className="text-xl anton-regular">Consistent Energy Boost</h4>
+            <h4 className={`${anton.className} text-xl`}>
+              Consistent Energy Boost
+            </h4>
             <p className="mt-6 text-md leading-relaxed opacity-90">
               With every serving, Grainly fuels your body with clean carbs that
               support endurance, strength, and recovery throughout the day.
@@ -61,7 +67,7 @@ export default function WhyChooseUs() {
 
           {/* Box 4 */}
           <div className="p-8 border border-white/30 text-white">
-            <h4 className="text-xl anton-regular">
+            <h4 className={`${anton.className} text-xl `}>
               Delicious, Dessert-Like Flavours
             </h4>
             <p className="mt-6 text-md leading-relaxed opacity-90">

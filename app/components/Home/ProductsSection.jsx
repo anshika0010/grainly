@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 // import Loader from "./Loader";
 import { fetchProducts } from "../../lib/fetchProducts";
-
+import { anton } from "../../lib/fonts";
 export default async function ProductsSection() {
   // Server-side fetch
   let products = [];
@@ -20,7 +20,7 @@ export default async function ProductsSection() {
     <section className="w-full bg-white py-12">
       <div className="max-w-7xl mx-auto px-6">
         {/* TITLE */}
-        <div className="flex items-center gap-3 mb-10 anton-regular">
+        <div className={`${anton.className} flex items-center gap-3 mb-10 `}>
           <div className="flex">
             <div className="w-4 h-4 border-t-4 border-r-4 border-gray-300 rotate-45"></div>
             <div className="w-4 h-4 border-t-4 border-r-4 border-gray-400 rotate-45"></div>
@@ -36,8 +36,12 @@ export default async function ProductsSection() {
               key={item._id}
               className="bg-[#f7f7f7] rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 hover:bg-white"
             >
-              <h3 className="text-3xl p-4 anton-regular">{item.flavour}</h3>
+              {/* Title */}
+              <h3 className={`${anton.className} text-3xl p-4`}>
+                {item.flavour}
+              </h3>
 
+              {/* Image */}
               <div className="p-4 flex justify-center items-center h-[320px]">
                 <Image
                   src={item.image}
@@ -45,11 +49,11 @@ export default async function ProductsSection() {
                   width={380}
                   height={320}
                   className="object-contain"
-                  priority={true} // for faster loading of hero products
+                  priority
                 />
               </div>
 
-              {/* Centered Button */}
+              {/* Button */}
               <div className="flex justify-center py-4">
                 <Link
                   href={`/products/${item.itemName

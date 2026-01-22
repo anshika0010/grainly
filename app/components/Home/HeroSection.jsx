@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { anton } from "../../lib/fonts";
 export const heroSlides = [
   {
     mainTitle: "BANANA",
@@ -52,7 +52,7 @@ export default function HeroSection() {
                 <div>
                   <div className="flex items-start">
                     <h1
-                      className="block text-[70px] sm:text-[120px] md:text-[150px] anton-regular leading-[0.85] font-extrabold tracking-tight uppercase"
+                      className={`${anton.className} block text-[70px] sm:text-[120px] md:text-[150px]  leading-[0.85] font-extrabold tracking-tight uppercase`}
                       style={{ color: slide.titleColor }}
                     >
                       {slide.mainTitle}
@@ -63,7 +63,7 @@ export default function HeroSection() {
                         className="h-5 sm:h-7 md:h-12 w-[180px] sm:w-[350px] md:w-[500px] -m-2 sm:-m-5"
                         style={{ backgroundColor: slide.barColor }}
                       />
-                      <p className="mt-3 md:mt-5 anton-regular text-base sm:text-xl md:text-3xl px-6 sm:px-16 md:px-24">
+                      <p className={`${anton.className} mt-3 md:mt-5  text-base sm:text-xl md:text-3xl px-6 sm:px-16 md:px-24`}>
                         GRAINLY - CREAM OF RICE
                       </p>
                     </div>
@@ -73,7 +73,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, x: -80 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                    className="text-[50px] sm:text-[90px] md:text-[130px] mt-3 anton-regular leading-[0.85] font-extrabold tracking-tight uppercase"
+                    className={`${anton.className} text-[50px] sm:text-[90px] md:text-[130px] mt-3  leading-[0.85] font-extrabold tracking-tight uppercase`}
                     style={{ color: slide.titleColor }}
                   >
                     {slide.subTitle}
@@ -85,7 +85,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, x: 200 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="text-[60px] sm:text-[90px] md:text-[100px] leading-[0.9] anton-regular font-extrabold tracking-tight uppercase "
+                    className={`${anton.className} text-[60px] sm:text-[90px] md:text-[70px] leading-[0.9] font-extrabold tracking-tight uppercase`}
                     style={{ color: slide.titleColor }}
                   >
                     FLAVOUR
@@ -95,7 +95,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, x: 200 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="text-[#f9a73e] anton-regular text-xs sm:text-sm md:text-md mt-1 tracking-wide max-w-[260px] sm:max-w-[290px] ml-auto uppercase"
+                    className={`${anton.className} text-[#f9a73e]  text-xs sm:text-sm md:text-md mt-1 tracking-wide max-w-[260px] sm:max-w-[290px] ml-auto uppercase`}
                   >
                     Cream Of Rice. A Clean Carbohydrate Based Powdered Meal
                   </motion.p>
@@ -113,14 +113,14 @@ export default function HeroSection() {
           <section className="relative container mx-auto py-10 px-4 sm:px-6 bg-cover bg-center">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
               <div className="md:w-[400px] text-black">
-                <h3 className="font-extrabold anton-regular text-6xl text-gray-400">
+                <h3 className={`${anton.className} text-6xl text-gray-400`}>
                   GRAINLY
                   <span className="block text-2xl text-gray-900">
                     CREAM OF RICE
                   </span>
                 </h3>
 
-                <p className="text-gray-500 mt-2 anton-regular">
+                <p className={`${anton.className}text-gray-500 mt-2 `}>
                   A Premium and Easy Digesting Carbohydrate Source Created For
                   Everyday Energy and Athlete Performance.
                 </p>
@@ -129,8 +129,8 @@ export default function HeroSection() {
                   className="mt-4 text-white w-[130px] h-[150px] flex flex-col justify-center items-center bg-cover"
                   style={{ backgroundImage: "url('/Images/bg60.webp')" }}
                 >
-                  <span className="text-4xl anton-regular">60</span>
-                  <span className="text-sm anton-regular">SERVINGS</span>
+                  <span className={`${anton.className} text-4xl `}>60</span>
+                  <span className={`${anton.className} text-sm `}>SERVINGS</span>
                 </div>
               </div>
 

@@ -5,28 +5,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
-
-export default function ProductDetailClient({ products, itemName }) {
+import HowToMake from "../HowToMake";
+import { anton } from "../../lib/fonts";
+export default function ProductDetailClient({ products = [], itemName }) {
   const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const [qty, setQty] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
 
   const product = useMemo(() => {
     if (!itemName || !products.length) return null;
     return products.find(
-      (p) => p.itemName?.toLowerCase() === itemName.toLowerCase()
+      (p) => p.itemName?.toLowerCase() === itemName.toLowerCase(),
     );
   }, [itemName, products]);
 
+  const selectedFlavour = product?.flavour;
+
   useEffect(() => {
-    if (product?.images?.length) {
+    if (product?.images?.length > 0) {
       setSelectedImage(product.images[0]);
     }
   }, [product]);
 
-  if (!product)
+  if (!product) {
     return <div className="mt-40 text-center">Product Not Found</div>;
+  }
 
   const tabs = [
     { id: "description", label: "DESCRIPTION" },
@@ -39,32 +43,70 @@ export default function ProductDetailClient({ products, itemName }) {
     <>
       <div className="max-w-7xl mx-auto p-6 grid md:grid-cols-2 gap-10 mt-20">
         {/* IMAGE */}
-        <div>
-          <Image
-            src={selectedImage}
-            alt={product.flavour}
-            width={600}
-            height={600}
-            className="w-full h-[580px] object-contain"
-          />
+        <div className="bg-gray-100 rounded-2xl p-4">
+          {selectedImage && (
+            <Image
+              src={selectedImage}
+              alt={product.flavour}
+              width={600}
+              height={600}
+              className="w-full h-[580px] object-contain rounded-2xl"
+              priority
+            />
+          )}
         </div>
 
         {/* CONTENT */}
         <div>
-          <h1 className="text-6xl font-bold text-orange-800">
+          <h1
+            className={`${anton.className} text-6xl font-bold text-orange-800`}
+          >
             {product.flavour}
           </h1>
 
-          <div className="flex mt-2">
+          <div className="flex mt-2 text-xl">
             {[...Array(5)].map((_, i) => (
               <AiFillStar key={i} />
             ))}
           </div>
 
-          <p className="mt-4 text-gray-600">
-            {product.shortDescription}
-          </p>
+          {/* TAGS */}
+          <div className="flex flex-wrap gap-2 mt-3">
+            {product?.tags?.map((tag, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 text-sm font-medium text-orange-700 bg-orange-100 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
+          {/* FLAVOURS */}
+          <div className="mt-6">
+            <p className={`${anton.className} font-semibold text-4xl mb-3`}>
+              FLAVOURS
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {products.map(({ _id, flavour, itemName }) => (
+                <Link
+                  key={_id}
+                  href={`/products/${itemName}`}
+                  className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                    selectedFlavour === flavour
+                      ? "bg-black text-white"
+                      : "bg-gray-100 hover:bg-gray-300"
+                  }`}
+                >
+                  {flavour}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-4 text-gray-600">{product.shortDescription}</p>
+
+          {/* QTY + BUY */}
           <div className="mt-6 flex gap-4 items-center">
             <div className="flex items-center border rounded-full px-4 py-2">
               <button onClick={() => qty > 1 && setQty(qty - 1)}>
@@ -78,7 +120,7 @@ export default function ProductDetailClient({ products, itemName }) {
 
             <button
               onClick={() => setOpen(true)}
-              className="bg-black text-white px-12 py-3 rounded-lg"
+              className="bg-black cursor-pointer text-white px-12 py-3 rounded-lg font-bold"
             >
               BUY NOW
             </button>
@@ -88,14 +130,14 @@ export default function ProductDetailClient({ products, itemName }) {
 
       {/* TABS */}
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex gap-6 border-b">
+        <div className={`${anton.className} flex gap-6  border-b`}>
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`text-xl ${
+              className={`text-3xl pb-2 cursor-pointer ${
                 activeTab === tab.id
-                  ? "text-orange-500 border-b-2 border-orange-500"
+                  ? "text-orange-500 border-b-2  border-orange-500"
                   : ""
               }`}
             >
@@ -104,11 +146,17 @@ export default function ProductDetailClient({ products, itemName }) {
           ))}
         </div>
 
-        <div className="mt-6 text-gray-600">
+        <div className="mt-6 text-gray-600 text-lg">
           {activeTab === "description" && product.description}
+          {activeTab === "key-benefits" &&
+            product.productBenefits?.map((b, i) => <li key={i}>{b}</li>)}
+          {activeTab === "why-choose" &&
+            product.directions?.map((d, i) => <li key={i}>{d}</li>)}
+          {activeTab === "supplement-facts" &&
+            product.keyFeatures?.map((k, i) => <li key={i}>{k}</li>)}
         </div>
       </div>
-      
+      <HowToMake />
     </>
   );
 }

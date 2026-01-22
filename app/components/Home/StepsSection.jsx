@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import { anton } from "../../lib/fonts";
 const StepsSection = () => {
   return (
     <div className="w-full">
@@ -11,7 +11,7 @@ const StepsSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-3xl md:text-5xl flex justify-center font-extrabold anton-regular tracking-wide"
+        className={`${anton.className} text-3xl md:text-5xl flex justify-center font-extrabold  tracking-wide`}
       >
         COOKING
       </motion.h2>
@@ -21,7 +21,7 @@ const StepsSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-5xl md:text-[100px] flex justify-center font-extrabold text-gray-400 anton-regular leading-none"
+        className={`${anton.className} text-5xl md:text-[100px] flex justify-center font-extrabold text-gray-400  leading-none`}
       >
         INSTRUCTIONS
       </motion.h3>
@@ -32,7 +32,7 @@ const StepsSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="text-center max-w-xl mx-auto text-lg md:text-2xl anton-regular mt-3 color-text"
+        className={`${anton.className} text-center max-w-xl mx-auto text-lg md:text-2xl  mt-3 color-text`}
       >
         Your Delicious Meal, Ready In 60 sec.
       </motion.p>
@@ -52,10 +52,10 @@ const StepsSection = () => {
 
               <div className="w-[320px] bg-white rounded-2xl shadow-xl px-2 py-10">
                 <div className="bg-orange-50 rounded-xl p-4 border border-orange-300">
-                  <h2 className="text-orange-400 text-4xl anton-regular font-bold">
+                  <h2 className={`${anton.className} text-orange-400 text-4xl  font-bold`}>
                     01
                   </h2>
-                  <h3 className="text-orange-500 anton-regular font-semibold mt-1">
+                  <h3 className={`${anton.className} text-orange-500 font-semibold mt-1`}>
                     Measure Your Grainly
                   </h3>
                   <p className="text-gray-600 text-sm mt-2 leading-relaxed">
@@ -78,10 +78,10 @@ const StepsSection = () => {
 
               <div className="w-[320px] bg-white rounded-2xl shadow-xl px-2 py-10">
                 <div className="bg-orange-50 rounded-xl p-4 border border-purple-300">
-                  <h2 className="text-purple-400 text-4xl anton-regular font-bold">
+                  <h2 className={`${anton.className} text-purple-400 text-4xl  font-bold`}>
                     03
                   </h2>
-                  <h3 className="text-purple-500 anton-regular font-semibold mt-1">
+                  <h3 className={`${anton.className} text-purple-500  font-semibold mt-1`}>
                     Make It Your Own
                   </h3>
                   <p className="text-gray-600 text-sm mt-2 leading-relaxed">
@@ -107,10 +107,10 @@ const StepsSection = () => {
 
               <div className="w-[320px] bg-white rounded-2xl shadow-xl px-2 py-10">
                 <div className="bg-orange-50 rounded-xl p-4 border border-red-300">
-                  <h2 className="text-red-700 text-4xl anton-regular font-bold">
+                  <h2 className= {`${anton.className} text-red-700 text-4xl font-bold`}>
                     02
                   </h2>
-                  <h3 className="text-red-800 anton-regular font-semibold mt-1">
+                  <h3 className={`${anton.className} text-red-800  font-semibold mt-1`}>
                     Add Liquid
                   </h3>
                   <p className="text-gray-600 text-sm mt-2 leading-relaxed">
@@ -132,10 +132,10 @@ const StepsSection = () => {
 
               <div className="w-[320px] bg-white rounded-2xl shadow-xl px-2 py-10">
                 <div className="bg-orange-50 rounded-xl p-4 border border-green-800">
-                  <h2 className="text-green-800 text-4xl anton-regular font-bold">
+                  <h2 className={`${anton.className} text-green-800 text-4xl  font-bold`}>
                     04
                   </h2>
-                  <h3 className="text-green-800 anton-regular font-semibold mt-1">
+                  <h3 className={`${anton.className} text-green-800  font-semibold mt-1`}>
                     Ready To Eat
                   </h3>
                   <p className="text-gray-800 text-sm mt-2 leading-relaxed">

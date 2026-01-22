@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiShoppingCart, FiUser } from "react-icons/fi";
 import Image from "next/image";
-
+import { anton } from "../lib/fonts";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function Navbar() {
           </button>
 
           {/* Desktop Menu */}
-          <ul className="hidden lg:flex items-center anton-regular gap-8 text-[18px] font-medium">
+          <ul className={`${anton.className} hidden lg:flex items-center  gap-8 text-[18px] font-medium`}>
             {navItems.map((item) => (
               <li key={item.path}>
                 <Link
@@ -60,7 +60,6 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
-
 
         {/* CENTER LOGO */}
         <Link href="/" className="absolute left-1/2 -translate-x-1/2">
@@ -84,7 +83,7 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden bg-white border-t border-orange-100 px-6 py-4">
-          <ul className="flex flex-col gap-4 anton-regular text-[18px] font-medium">
+          <ul className={`${anton.className} flex flex-col gap-4 text-[18px] font-medium`}>
             {navItems.map((item) => (
               <li key={item.path}>
                 <Link
