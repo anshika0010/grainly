@@ -81,18 +81,17 @@ export default function BlogSection() {
         </motion.p>
 
         {/* Swiper */}
-        <div className="mt-16">
+        <div className="mt-13">
           <Swiper
             modules={[Autoplay, Pagination]}
             spaceBetween={24}
             autoplay={{ delay: 3000 }}
-            pagination={{ clickable: true }}
             breakpoints={{
               0: { slidesPerView: 1 },
               768: { slidesPerView: 1.2 },
               1024: { slidesPerView: 1.5 },
             }}
-            className="pb-14"
+            className="pb-8"
           >
             {blogs.map((blog, index) => (
               <SwiperSlide key={index}>
@@ -101,7 +100,7 @@ export default function BlogSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-2xl shadow-lg px-6 py-12 m-2 flex flex-col md:flex-row gap-6 m-2"
+                  className="bg-orange-100 rounded-2xl shadow-lg p-1  flex flex-col md:flex-row gap-6 "
                 >
                   {/* IMAGE */}
                   <div className="relative w-full md:w-1/2 h-80">
@@ -116,7 +115,7 @@ export default function BlogSection() {
 
                   {/* CONTENT */}
                   <div className="flex flex-col justify-center text-left">
-                    <h4 className={`${anton.className} text-2xl `}>
+                    <h4 className={`${anton.className} text-xl `}>
                       {blog.title}
                     </h4>
 

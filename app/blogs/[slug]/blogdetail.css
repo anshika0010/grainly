@@ -1,0 +1,256 @@
+.blog-detail-page {
+  padding: 20px 50px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  padding-top: 80px;
+}
+
+.blog-detail-page .datediv {
+  color: #666;
+  padding-top: 15px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-detail-page .blog-details-hero {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  border-radius: 20px;
+  overflow: hidden;
+
+  object-fit: cover;
+}
+
+.blog-detail-page .blog-details-hero img {
+  width: 100%;
+
+  object-fit: cover;
+}
+
+.blog-detail-page .content {
+  margin: auto;
+  background: white;
+  border-radius: 10px;
+  width: 100%;
+  overflow: hidden;
+  max-width: 100% !important;
+}
+
+.blog-detail-page h2 {
+  font-family: "Outfit", sans-serif;
+  color: #222;
+  font-size: 1.5rem;
+  max-width: 100% !important;
+}
+
+.blog-detail-page h3 {
+  max-width: 100% !important;
+  color: #333;
+}
+.blog-detail-page h4 {
+  max-width: 100% !important;
+  color: #333;
+}
+
+.blog-detail-page span {
+}
+.blog-detail-page .content p {
+  font-size: 1rem;
+  max-width: 100% !important;
+  line-height: 28px;
+}
+
+.blog-detail-page .content ul {
+  padding-left: 22px;
+}
+
+.blog-detail-page li {
+  line-height: 25px;
+}
+
+.blog-detail-page .content table {
+  border-collapse: collapse;
+
+  overflow: auto;
+  width: 100% !important;
+}
+
+.blog-detail-page .content table tr td {
+  border: 1px solid black;
+  padding: 10px 12px !important;
+}
+.blog-detail-page .content table tr th {
+  border: 1px solid black;
+  padding: 10px 12px !important;
+}
+
+.blog-detail-page .faq-right {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.sidebar {
+  position: sticky;
+  top: 30px;
+  width: 90%;
+  background: #f7f8f7;
+  padding: 25px 30px;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  max-height: max-content;
+}
+
+.sidebar-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.section-heading {
+  font-size: 17px;
+  font-weight: 400;
+  color: #777 !important;
+  margin: 20px 0px;
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.nav-item .material-icons {
+  color: black;
+}
+.nav-item:hover {
+  background-color: black;
+  color: white;
+}
+.nav-item:hover .material-icons {
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .blog-detail-page {
+    padding: 20px;
+
+    grid-template-columns: 0px 100%;
+  }
+  .sidebar {
+    transform: translateX(-1000px);
+  }
+}
+
+.blog-detail-page .content h1,
+h2,
+h3,
+h5,
+h6 {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.faq-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  padding: 60px 8%;
+}
+.faq-left {
+  flex: 1 1;
+  min-width: 320px;
+}
+.faq-left h3 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+.faq-left h3 span {
+  color: #ec9213;
+  padding: 3px;
+}
+.faq-desc {
+  color: #444;
+  margin: 20px 0;
+  max-width: 400px;
+}
+.ask-title {
+  font-size: 24px;
+  margin-top: 25px;
+}
+.ask-input {
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  margin-top: 10px;
+  outline: none;
+  padding: 12px 15px;
+  width: 80%;
+}
+.ask-input:focus {
+  border-color: #b4cc17;
+}
+.faq-right {
+  flex: 1.2 1;
+}
+.faq-item {
+  background: #d8eeff;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.faq-question {
+  align-items: center;
+  background: #0000;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: space-between;
+  outline: none;
+  padding: 18px 22px;
+  width: 100%;
+}
+.faq-answer {
+  background: #fff;
+  color: #444;
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 22px;
+  transition: all 0.35s ease;
+}
+.faq-answer.open {
+  padding: 18px 22px;
+}
+.icon {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+.rotate {
+  transform: rotate(135deg);
+}
+@media (max-width: 900px) {
+  .faq-section {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .faq-left h1 {
+    font-size: 2.5rem;
+  }
+}

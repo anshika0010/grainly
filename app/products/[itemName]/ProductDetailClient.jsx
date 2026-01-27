@@ -39,21 +39,140 @@ export default function ProductDetailClient({ products = [], itemName }) {
     { id: "supplement-facts", label: "SUPPLEMENT FACTS" },
   ];
 
+  {
+    /* Modal Overlay */
+  }
+  {
+    open && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+        {/* Modal Box */}
+        <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6 text-center relative">
+          {/* Close Button */}
+          <button
+            onClick={() => setOpen(false)}
+            className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl"
+          >
+            ×
+          </button>
+
+          <h2 className="text-2xl anton-regular font-bold text-gray-800 mb-4">
+            Coming Soon!
+          </h2>
+
+          <p className="text-gray-600 mb-4">
+            Thank you for your interest in our product. We’re currently working
+            on this feature, and it will be available very soon.
+          </p>
+
+          <p className="text-gray-600">
+            For more information, please contact us at
+            <br />
+            <a
+              href="mailto:info@grainly.com"
+              className="text-orange-600 font-semibold hover:underline"
+            >
+              info@grainly-foods.com
+            </a>
+          </p>
+
+          <button
+            onClick={() => setOpen(false)}
+            className="mt-6 bg-gray-800 text-white px-5 py-2 rounded-lg hover:bg-gray-900 transition"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
+      {/* Modal Overlay */}
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          {/* Modal Box */}
+          <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6 text-center relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl"
+            >
+              ×
+            </button>
+
+            <h2 className="text-2xl anton-regular font-bold text-gray-800 mb-4">
+              Coming Soon!
+            </h2>
+
+            <p className="text-gray-600 mb-4">
+              Thank you for your interest in our product. We’re currently
+              working on this feature, and it will be available very soon.
+            </p>
+
+            <p className="text-gray-600">
+              For more information, please contact us at
+              <br />
+              <a
+                href="mailto:info@grainly.com"
+                className="text-orange-600 font-semibold hover:underline"
+              >
+                info@grainly-foods.com
+              </a>
+            </p>
+
+            <button
+              onClick={() => setOpen(false)}
+              className="mt-6 bg-gray-800 text-white px-5 py-2 rounded-lg hover:bg-gray-900 transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto p-6 grid md:grid-cols-2 gap-10 mt-20">
-        {/* IMAGE */}
-        <div className="bg-gray-100 rounded-2xl p-4">
-          {selectedImage && (
-            <Image
-              src={selectedImage}
-              alt={product.flavour}
-              width={600}
-              height={600}
-              className="w-full h-[580px] object-contain rounded-2xl"
-              priority
-            />
-          )}
+        <div className="w-full">
+          {/* Main Image */}
+          <div className="bg-gray-100 rounded-2xl p-4 flex items-center justify-center">
+            {selectedImage && (
+              <Image
+                src={selectedImage}
+                alt={product.flavour}
+                width={600}
+                height={600}
+                priority
+                className="w-full max-h-[580px] object-contain rounded-2xl"
+              />
+            )}
+          </div>
+
+          {/* Thumbnails */}
+          <div className="mt-4 grid grid-cols-4 gap-3">
+            {product?.images?.length > 0 ? (
+              product.images.map((img, index) => (
+                <div
+                  key={index}
+                  onMouseEnter={() => setSelectedImage(img)}
+                  className={`border rounded-xl p-1 cursor-pointer transition
+            ${
+              selectedImage === img
+                ? "border-black"
+                : "border-gray-300 hover:border-gray-500"
+            }`}
+                >
+                  <img
+                    src={img}
+                    alt={`Grainly-creame-of-rice-${index}`}
+                    className="w-full h-32 object-contain rounded-lg"
+                  />
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-400 text-sm col-span-4 text-center">
+                No additional images available
+              </p>
+            )}
+          </div>
         </div>
 
         {/* CONTENT */}

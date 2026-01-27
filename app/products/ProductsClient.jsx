@@ -57,7 +57,9 @@ export default function ProductsClient({ products = [], searchText }) {
               key={item._id}
               className="bg-[#f7f7f7] rounded-lg hover:shadow-lg transition"
             >
-              <h5 className= {`${anton.className} text-3xl p-4 `}>{item.flavour}</h5>
+              <h5 className={`${anton.className} text-3xl p-4 `}>
+                {item.flavour}
+              </h5>
 
               <div className="flex justify-center">
                 <Image

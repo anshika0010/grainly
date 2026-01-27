@@ -1,10 +1,6 @@
-"use client";
+import BlogDetailClient from "./BlogDetailClient";
 
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-
+// slugify
 const slugify = (text) =>
   text
     .toLowerCase()
@@ -13,146 +9,86 @@ const slugify = (text) =>
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 
-export default function BlogDetailPage() {
-  const { slug } = useParams();
-  const [blogDetail, setBlogDetail] = useState(null);
-  const [openIndex, setOpenIndex] = useState(null);
-  const answerRefs = useRef([]);
+// fetch blog
+async function getBlog(slug) {
+  const res = await fetch("https://drippy.rbhardwaj.com/api/blogapi.php", {
+    cache: "no-store",
+  });
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const data = await res.json();
 
-  useEffect(() => {
-    async function fetchBlog() {
-      try {
-        const res = await fetch("https://drippy.rbhardwaj.com/api/blogapi.php");
-        const data = await res.json();
+  return data.find((item) => slugify(item.title) === decodeURIComponent(slug));
+}
 
-        const blog = data.find(
-          (item) => slugify(item.title) === decodeURIComponent(slug),
-        );
+/* 🔥 SEO */
+export async function generateMetadata({ params }) {
+  const { slug } = await params; // ✅ correct
 
-        setBlogDetail(blog || null);
-      } catch (err) {
-        console.error(err);
-      }
-    }
+  const blog = await getBlog(slug);
 
-    fetchBlog();
-  }, [slug]);
-
-  if (!blogDetail) {
-    return <p className="text-center py-20">Loading...</p>;
+  if (!blog) {
+    return {
+      title: "Blog Not Found | Grainly Foods",
+    };
   }
 
-  const faqData = blogDetail?.faq ? JSON.parse(blogDetail.faq) : [];
+  const canonicalUrl = `https://www.grainly-foods.com/blogdetail/${slug}`;
 
-  return (
-    <div className="max-w-[1300px] mx-auto px-6 py-10 flex gap-10">
-      {/* SIDEBAR */}
-      <aside className="w-[280px] hidden lg:block">
-        <h2 className="text-2xl font-bold mb-4">Wellness Hub</h2>
+  return {
+    title: blog.title,
+    description:
+      blog.metaDescription ||
+      "Read the latest nutrition insights from Grainly Foods.",
 
-        <Link
-          href="/blogs"
-          className="block bg-black text-white px-4 py-2 rounded mb-6"
-        >
-          ← Back to Blogs
-        </Link>
+    alternates: {
+      canonical: canonicalUrl, // ✅ FIX
+    },
 
-        <h4 className="font-semibold mb-3">CATEGORIES</h4>
+    openGraph: {
+      title: blog.title,
+      description:
+        blog.metaDescription ||
+        "Read the latest nutrition insights from Grainly Foods.",
+      url: canonicalUrl, // ✅ FIX
+      siteName: "Grainly-Foods",
+      images: [
+        {
+          url: blog.image || "https://www.grainly-foods.com/logo.webp",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      type: "article",
+      locale: "en_AE",
+    },
 
-        <div className="flex flex-col gap-2 text-sm">
-          <Link href="/blogs">Cream of Rice Basics</Link>
-          <Link href="/blogs">Weight Balance & Smart Eating</Link>
-          <Link href="/blogs">Digestive Comfort</Link>
-          <Link href="/blogs">Busy Lifestyle Nutrition</Link>
-          <Link href="/blogs">Evening & Night Meals</Link>
-        </div>
-      </aside>
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description:
+        blog.metaDescription ||
+        "Read the latest nutrition insights from Grainly Foods.",
+      images: [blog.image || "https://www.grainly-foods.com/logo.webp"],
+    },
 
-      {/* CONTENT */}
-      <main className="flex-1">
-        <h1 className="text-3xl font-bold">{blogDetail.title}</h1>
+    robots: {
+      index: true,
+      follow: true,
+    },
 
-        <div className="flex justify-between items-center mt-4">
-          <div>
-            <p className="text-blue-600 font-semibold text-lg">
-              {blogDetail.author}
-            </p>
-            <p className="text-sm text-gray-600">Posted on {blogDetail.date}</p>
-          </div>
+    authors: [{ name: blog.author || "Grainly Foods" }],
+  };
+}
 
-          <button
-            className="p-3 rounded-full bg-gray-200"
-            onClick={() =>
-              navigator.share?.({
-                title: blogDetail.title,
-                text: "Check out this blog",
-                url: window.location.href,
-              })
-            }
-          >
-            🔗
-          </button>
-        </div>
+/* PAGE */
+export default async function BlogDetailPage({ params }) {
+  const { slug } = await params; // ✅ VERY IMPORTANT
 
-        {/* HERO IMAGE */}
-        <div className="relative w-full h-[500px] my-8">
-          <Image
-            src={
-              blogDetail.image ||
-              "https://via.placeholder.com/800x500?text=No+Image"
-            }
-            alt={blogDetail.title}
-            fill
-            className="object-cover rounded-xl"
-            sizes="100vw"
-          />
-        </div>
+  const blog = await getBlog(slug);
 
-        {/* CONTENT */}
-        <div
-          className="prose max-w-none"
-          dangerouslySetInnerHTML={{ __html: blogDetail.content }}
-        />
+  if (!blog) {
+    return <p className="text-center py-20">Blog Not Found</p>;
+  }
 
-        {/* FAQ */}
-        {faqData.length > 0 && (
-          <div className="mt-14">
-            <h3 className="text-2xl font-bold mb-6">
-              Frequently Asked Questions
-            </h3>
-
-            {faqData.map((item, index) => (
-              <div key={index} className="border-b py-4">
-                <button
-                  className="flex justify-between w-full font-medium"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  {item.question}
-                  <span>{openIndex === index ? "−" : "+"}</span>
-                </button>
-
-                <div
-                  ref={(el) => (answerRefs.current[index] = el)}
-                  style={{
-                    maxHeight:
-                      openIndex === index
-                        ? `${answerRefs.current[index]?.scrollHeight}px`
-                        : "0px",
-                    overflow: "hidden",
-                    transition: "max-height 0.3s ease",
-                  }}
-                >
-                  <p className="mt-3 text-gray-700">{item.answer}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </main>
-    </div>
-  );
+  return <BlogDetailClient blogDetail={blog} />;
 }

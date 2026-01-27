@@ -14,7 +14,7 @@ export default async function ProductsSection() {
 
   const displayedItems = products.slice(0, 3);
 
-  if (!products.length) return <div>Loading...</div>;
+  if (!products.length) return <div>...Loading</div>;
 
   return (
     <section className="w-full bg-white py-12">

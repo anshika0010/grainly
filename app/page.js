@@ -8,6 +8,7 @@ import StepsSection from "./components/Home/StepsSection";
 import ProductsSection from "./components/Home/ProductsSection";
 import BestSellers from "./components/Home/BestSellers";
 import BlogSection from "./components/BlogsSection";
+import HoverSection from "./components/Home/HoverSection";
 
 export const metadata = {
   title: "Grainly Foods | Premium Flavored Cream of Rice Nutrition",
@@ -63,6 +64,7 @@ export default function Home() {
       <BestSellers />
       <StepsSection />
       <BlogSection />
+      <HoverSection />
       <FAQSection />
       <LetterMarquee />
     </>
