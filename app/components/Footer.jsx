@@ -1,11 +1,38 @@
 "use client";
 
-// import { ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { ChevronRight, X } from "lucide-react";
 import Link from "next/link";
 import SocialIcons from "./SocialIcons";
 import Image from "next/image";
 import { anton } from "../lib/fonts";
+import { motion, AnimatePresence } from "framer-motion";
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email) return;
+
+    try {
+      const res = await fetch("http://localhost:5000/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setOpen(true); // popup open
+        setEmail("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <footer className="w-full mt-20">
       {/* SUBSCRIBE SECTION */}
@@ -23,17 +50,64 @@ export default function Footer() {
           stock.
         </p>
 
-        {/* EMAIL INPUT */}
-        <div className="flex justify-center mt-8">
+        <form onSubmit={handleSubmit} className="flex justify-center mt-8">
           <div className="flex items-center w-[350px] md:w-[420px] bg-white border border-gray-300 rounded-full px-5 py-3 shadow-sm">
             <input
               type="email"
               placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-transparent outline-none text-gray-700"
             />
-            {/* <ChevronRight className="text-gray-500" /> */}
+            <button
+              type="submit"
+              className="bg-black px-6 py-1 text-white rounded-full font-medium flex items-center gap-2 cursor-pointer hover:bg-orange-500 transition"
+            >
+              Send
+              <ChevronRight className="text-gray-200" />
+            </button>
           </div>
-        </div>
+        </form>
+
+        {/* POPUP MODAL */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="bg-white rounded-xl p-6 w-[90%] max-w-sm text-center relative"
+                initial={{ scale: 0.8, y: 50, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.8, y: 50, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <button
+                  onClick={() => setOpen(false)}
+                  className="absolute top-3 right-3 text-gray-500 hover:text-black"
+                >
+                  <X />
+                </button>
+
+                <h2 className="text-xl font-semibold mb-2">🎉 Thank You!</h2>
+                <p className="text-gray-600">
+                  Thank you for subscribing. We’ll keep you updated!
+                </p>
+
+                <button
+                  onClick={() => setOpen(false)}
+                  className="mt-5 bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition"
+                >
+                  Close
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* BLACK FOOTER SECTION */}
@@ -90,7 +164,10 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact-us" className="hover:text-white transition">
+                  <Link
+                    href="/contact-us"
+                    className="hover:text-white transition"
+                  >
                     Contact
                   </Link>
                 </li>

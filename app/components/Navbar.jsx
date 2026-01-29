@@ -6,9 +6,16 @@ import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiShoppingCart, FiUser } from "react-icons/fi";
 import Image from "next/image";
 import { anton } from "../lib/fonts";
+import CartAside from "./CartAside";
+import { useCart } from "../context/CartContext";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { cartItems, openCart } = useCart();
+
+  // 👉 total quantity (not just length)
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
   const pathname = usePathname();
 
   useEffect(() => {
@@ -43,7 +50,9 @@ export default function Navbar() {
           </button>
 
           {/* Desktop Menu */}
-          <ul className={`${anton.className} hidden lg:flex items-center  gap-8 text-[18px] font-medium`}>
+          <ul
+            className={`${anton.className} hidden lg:flex items-center  gap-8 text-[18px] font-medium`}
+          >
             {navItems.map((item) => (
               <li key={item.path}>
                 <Link
@@ -75,7 +84,18 @@ export default function Navbar() {
 
         {/* RIGHT ICONS */}
         <div className="flex items-center gap-6 text-orange-600 text-xl">
-          <FiShoppingCart className="cursor-pointer" />
+          <button onClick={openCart} className="relative">
+            <FiShoppingCart className="w-6 h-6 cursor-pointer" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cartCount}
+              </span>
+            )}
+          </button>
+
+          {/* ✅ No props */}
+          <CartAside />
+
           <FiUser className="cursor-pointer" />
         </div>
       </div>
@@ -83,7 +103,9 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden bg-white border-t border-orange-100 px-6 py-4">
-          <ul className={`${anton.className} flex flex-col gap-4 text-[18px] font-medium`}>
+          <ul
+            className={`${anton.className} flex flex-col gap-4 text-[18px] font-medium`}
+          >
             {navItems.map((item) => (
               <li key={item.path}>
                 <Link

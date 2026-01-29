@@ -3,7 +3,7 @@ import ProductsSection from "../ProductsSection";
 import ProductDetailClient from "./ProductDetailClient";
 
 export default async function ProductDetailPage({ params }) {
-  const { itemName } = await params; // ✅ FIX
+  const { itemName } = await params;
 
   let products = [];
   try {
@@ -16,7 +16,7 @@ export default async function ProductDetailPage({ params }) {
     <>
       {" "}
       <ProductDetailClient products={products} itemName={itemName} />
-      <ProductsSection />
+      <ProductsSection excludeSlug={itemName} />
     </>
   );
 }
