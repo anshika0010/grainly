@@ -19,7 +19,7 @@ export default function ProductDetailClient({ products = [], itemName }) {
   const product = useMemo(() => {
     if (!itemName || !products.length) return null;
     return products.find(
-      (p) => p.itemName?.toLowerCase() === itemName.toLowerCase()
+      (p) => p.itemName?.toLowerCase() === itemName.toLowerCase(),
     );
   }, [itemName, products]);
 
@@ -31,6 +31,7 @@ export default function ProductDetailClient({ products = [], itemName }) {
     }
   }, [product]);
 
+  console.log(product.images);
   if (!product) {
     return <div className="mt-40 text-center">Product Not Found</div>;
   }
@@ -51,52 +52,52 @@ export default function ProductDetailClient({ products = [], itemName }) {
       {/* Main Section */}
       <div className="max-w-7xl mx-auto p-4 sm:p-6 mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Images */}
+
         <div className="w-full">
-          <div className="bg-gray-100 rounded-2xl p-3 flex items-center justify-center">
+          <div className="bg-gray-100 rounded-2xl p-3 flex items-center justify-center relative z-10">
             {selectedImage && (
               <Image
                 src={selectedImage}
                 alt={product.flavour}
                 width={600}
                 height={600}
-                priority
+                unoptimized
                 className="w-full max-h-[500px] sm:max-h-[580px] object-contain rounded-2xl"
               />
             )}
           </div>
 
           {/* Thumbnails */}
-          <div className="mt-4 flex gap-2 overflow-x-auto">
-            {product?.images?.length > 0 ? (
-              product.images.map((img, index) => (
-                <div
-                  key={index}
-                  onMouseEnter={() => setSelectedImage(img)}
-                  className={`flex-shrink-0 border rounded-xl p-1 cursor-pointer transition
-                  ${
-                    selectedImage === img
-                      ? "border-black"
-                      : "border-gray-300 hover:border-gray-500"
-                  }`}
-                >
-                  <img
-                    src={img}
-                    alt={`Grainly-creame-of-rice-${index}`}
-                    className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-lg"
-                  />
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-400 text-sm col-span-4 text-center">
-                No additional images available
-              </p>
-            )}
+          <div className="mt-4 flex gap-2 overflow-x-auto relative z-20">
+            {product.images.map((img, index) => (
+              <div
+                key={index}
+                onMouseEnter={() => setSelectedImage(img)}
+                className={`flex-shrink-0 border rounded-xl p-1 cursor-pointer transition bg-white
+      ${
+        selectedImage === img
+          ? "border-black"
+          : "border-gray-300 hover:border-gray-500"
+      }`}
+              >
+                <Image
+                  src={img}
+                  alt={`product-thumb-${index}`}
+                  width={96}
+                  height={96}
+                  unoptimized
+                  className="object-contain rounded-lg bg-gray-100"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Product Details */}
         <div className="flex flex-col justify-start mx-2 sm:mx-6">
-          <h1 className={`${anton.className} text-4xl sm:text-3xl md:text-5xl font-bold text-orange-800`}>
+          <h1
+            className={`${anton.className} text-4xl sm:text-3xl md:text-5xl font-bold text-orange-800`}
+          >
             {product.flavour}
           </h1>
 
@@ -121,19 +122,29 @@ export default function ProductDetailClient({ products = [], itemName }) {
           {/* Diet & Serving */}
           <div className="flex flex-col sm:flex-row justify-between gap-2 mt-3">
             <div className="flex items-center gap-2">
-              <span className={`${anton.className} text-sm sm:text-xl`}>Diet-Type:</span>
-              <p className="anton-regular text-gray-800 text-sm sm:text-xl">Vegetarian</p>
+              <span className={`${anton.className} text-sm sm:text-xl`}>
+                Diet-Type:
+              </span>
+              <p className="anton-regular text-gray-800 text-sm sm:text-xl">
+                Vegetarian
+              </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className={`${anton.className} text-sm sm:text-xl`}>Serving:</span>
-              <p className="anton-regular text-gray-800 text-sm sm:text-xl">65</p>
+              <span className={`${anton.className} text-sm sm:text-xl`}>
+                Serving:
+              </span>
+              <p className="anton-regular text-gray-800 text-sm sm:text-xl">
+                65
+              </p>
             </div>
           </div>
 
           {/* Price */}
           <div className="flex items-center gap-2 mt-2">
-            <span className={`${anton.className} text-xl sm:text-2xl`}>PRICE:</span>
+            <span className={`${anton.className} text-xl sm:text-2xl`}>
+              PRICE:
+            </span>
             <p className="text-red-500 font-bold text-xl sm:text-2xl">
               ₹{product?.discountPrice}/-
             </p>
@@ -141,7 +152,9 @@ export default function ProductDetailClient({ products = [], itemName }) {
 
           {/* Flavours */}
           <div className="mt-6">
-            <p className={`${anton.className} font-semibold text-2xl sm:text-4xl mb-3`}>
+            <p
+              className={`${anton.className} font-semibold text-2xl sm:text-4xl mb-3`}
+            >
               FLAVOURS
             </p>
             <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -162,7 +175,9 @@ export default function ProductDetailClient({ products = [], itemName }) {
             </div>
           </div>
 
-          <p className="mt-4 text-gray-600 text-sm sm:text-base">{product.shortDescription}</p>
+          <p className="mt-4 text-gray-600 text-sm sm:text-base">
+            {product.shortDescription}
+          </p>
 
           {/* Qty + Buy */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
@@ -188,7 +203,9 @@ export default function ProductDetailClient({ products = [], itemName }) {
 
       {/* TABS */}
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className={`${anton.className} flex gap-4 sm:gap-6 border-b overflow-x-auto`}>
+        <div
+          className={`${anton.className} flex gap-4 sm:gap-6 border-b overflow-x-auto`}
+        >
           {tabs.map((tab) => (
             <button
               key={tab.id}

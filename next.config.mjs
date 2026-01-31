@@ -1,13 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "www.grainly-foods.com",
-        pathname: "/**",
-      },
-    ],
+    domains: ["www.grainly-foods.com"],
   },
 };
 

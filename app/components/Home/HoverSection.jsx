@@ -70,7 +70,7 @@ const HoverSection = () => {
                   className="w-[300px] h-[380px] md:w-[320px] md:h-[400px]"
                   frameBorder="0"
                   scrolling="no"
-                  allowTransparency
+               
                 ></iframe>
               </div>
             </div>

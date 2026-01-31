@@ -152,7 +152,7 @@ export default function Navbar() {
 
             {/* Header */}
             <div className="flex flex-col items-center mb-4">
-              <FiUser className="text-orange-500 w-12 h-12 mb-2" />
+              <FiUser className="text-black w-12 h-12 mb-2" />
               <h2 className="text-2xl font-semibold text-center text-gray-800">
                 Login / Verify
               </h2>
